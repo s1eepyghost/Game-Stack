@@ -11,8 +11,11 @@ function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
+            <li className="nav-item">
               <NavLink className='nav-link' to='/about'>About</NavLink>
+              </li>
+              <li className="nav-item">
+              <NavLink className='nav-link' to='/about'>Search</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className='nav-link' to='/portfolio'>Login</NavLink>
