@@ -5,6 +5,11 @@ const gameSchema = new Schema({
         type: String,
         required: true,
     },
+    developers: [
+        {
+            type: String,
+        }
+    ],
     platforms: [
         {
             type: String,
