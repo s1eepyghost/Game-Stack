@@ -12,6 +12,7 @@ const typeDefs = gql`
         email: String!
         gameCount: Int
         savedGames: [Game]
+        savedPlatforms: [String]
     }
 
     type Game {
