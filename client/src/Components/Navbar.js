@@ -10,8 +10,8 @@ function GamestackNavbar() {
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <Navbar.Brand href="/"><h1 className='text-white'>GAME-STACK
-        <img src="/game-contoller.jpeg" className="iconimage" /></h1>
-        {/* <img src={process.env.PUBLIC_URL + "/game-controller.jpeg"} className="iconimage" /></h1> */}
+        <img src="/blue-contoller.jpeg" className="iconimage" /></h1>
+         <img src={process.env.PUBLIC_URL + "/blue-controller.jpeg"} className="iconimage" />
       
 
         </Navbar.Brand>
@@ -46,7 +46,7 @@ function GamestackNavbar() {
               className="me-2"
               aria-label="Search"
             />
-            <Button className='text-white mainlink' variant="outline-success">Search</Button>
+            <Button className='text- mainlink' variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
