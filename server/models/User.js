@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const gameSchema = require('./Game');
+const platformSchema = require('./Platform');
 
 const userSchema = new Schema(
     {
@@ -21,11 +22,7 @@ const userSchema = new Schema(
             required: true,
         },
         savedGames: [gameSchema],
-        savedPlatforms: [
-            {
-                type: String
-            }
-        ]
+        savedPlatforms: [platformSchema]
     },
     {
         toJSON: {
