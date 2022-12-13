@@ -14,7 +14,7 @@ const resolvers = {
 
             throw new AuthenticationError('Please log in to get user data');
         },
-        users: async (parent, args, context) => {
+        users: async () => {
             return User.find({});
         }
     },
@@ -91,6 +91,10 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You must be logged in to remove game platforms from your account.');
+        },
+        testAddUser: async (parent, args, context) => {
+            console.log('testAddUser ran')
+            return await User.create(args);
         }
         
     }
