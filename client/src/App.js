@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, Link } from "react-router-dom"
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Navbar from "./Pages/Navbar";
 import Home from "./Pages/Home"
 import About from "./Pages/About"
 import React, { lazy, Suspense } from "react"
@@ -34,6 +35,10 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Routes>
+            <Route
+              path="/"
+              element={<Navbar />}
+            />
             <Route
               path="/"
               element={<Home />}
