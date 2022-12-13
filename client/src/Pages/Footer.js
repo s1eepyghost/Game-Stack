@@ -3,7 +3,7 @@ import React from 'react';
 function Footer(){
     return(
         <div class="footer" id="footer">
-            <a href="https://rawg.io/"><img src="" alt="" className="icon"/></a>
+            <a href=""><img src="" alt="" className="icon"/></a>
             
            
         </div>
