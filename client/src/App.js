@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, Link } from "react-router-dom"
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Home from "./Components/Home"
-import About from "./Components/About"
+import Home from "./Pages/Home"
+import About from "./Pages/About"
 import React, { lazy, Suspense } from "react"
 
 // const Home = lazy(() => import("./Components/Home"))
@@ -31,17 +31,24 @@ const client = new ApolloClient({
 function App() {
   const API_KEY = process.env.REACT_APP_API_KEY
   return (
-  <Router>
-    <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-      </Routes>  
-    </Router>
-  // <div>
-  //   <Home />
-  //   <About />
-  // </div>
-  
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/about"
+              element={<About />}
+            />
+            <Route
+              path="*"
+              element={<h1 className="display-2">Wrong page!</h1>}
+            />
+        </Routes>  
+      </Router>
+    </ApolloProvider>  
   )
 }
 
