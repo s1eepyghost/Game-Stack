@@ -9,7 +9,7 @@ function GamestackNavbar() {
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/"><h1 className='text-white'>Game-stack
+        <Navbar.Brand href="/"><h1 className='text-white'>GAME-STACK
         <img src="/game-contoller.jpeg" className="iconimage" /></h1>
         {/* <img src={process.env.PUBLIC_URL + "/game-controller.jpeg"} className="iconimage" /></h1> */}
       
