@@ -1,7 +1,6 @@
-import { useState } from "react"
+import React from "react"
 
-export default function Home() {
-
+function Home() {
     return (
         <>
             <h1>Home</h1>
@@ -10,3 +9,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home
