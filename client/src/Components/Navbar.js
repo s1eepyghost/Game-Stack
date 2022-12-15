@@ -1,12 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Modal from 'react-bootstrap/Modal';
 import React, { useState } from 'react';
 import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 
@@ -43,7 +45,7 @@ function NavScrollExample() {
               <Nav className="d-flex">
                 {Auth.loggedIn() ? (
                   <>
-                  Logged in, this isn't finished yet
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                   </>
                 ) : (
                   <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
@@ -53,8 +55,36 @@ function NavScrollExample() {
         </Container>
       </Navbar>
       {/* set up signup/login modal */}
-      <Modal>
-
+      <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='signup-modal'        
+      >
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='signup-modal'>
+              <Nav variant='pills'>
+                <Nav.Item>
+                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <LoginForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+              <Tab.Pane eventKey='signup'>
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
       </Modal>
     </>
   );
