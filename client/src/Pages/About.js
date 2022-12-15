@@ -10,12 +10,12 @@ function About() {
       <div className="col-10" id="about-section">
       <img className="image mb-5 w-40 h-25" src="" alt=""/>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mi neque, consectetur sit amet rutrum in, egestas a massa. Vivamus a urna sagittis eros molestie interdum. Cras accumsan mi vitae sem egestas, ut scelerisque diam tincidunt. Mauris ligula nibh, mollis ut pretium quis, dapibus at neque. Morbi aliquet tincidunt lacus a consequat. Quisque neque enim, mattis vel sagittis nec, volutpat nec libero. Donec malesuada lacus purus, et euismod mi aliquet eget. Duis ut condimentum dui. Morbi elementum ac diam ac auctor. Morbi sollicitudin sem velit, non porta massa faucibus sed. Nulla semper turpis sit amet dolor facilisis feugiat id ac turpis. Sed a mi ultrices, scelerisque dui vitae, luctus massa. Donec tempus elit eu ultricies faucibus. Suspendisse fermentum pharetra quam a condimentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse vel mauris et tortor dictum venenatis vel nec est.
+        The goal of the project would be to create a system for saving and accessing game data on a computer in a way that is efficient and effective. In this project, We worked together to explore the various options for saving video game data on a computer. We then researched different methods and technologies that could be used for this purpose, such as using local storage or cloud storage. After discussing the pros and cons of each option, we ultimately decided on a solution that would be most effective and efficient for their needs. Our group then implemented this solution, testing it to ensure that it was able to successfully save and retrieve video game data as desired. Through our work, we were able to develop a system for saving video game data on a computer that was both effective and reliable.
         </p>
         <br>
         </br>
         <p>
-        Donec volutpat pulvinar turpis id auctor. Mauris commodo sodales aliquam. Ut efficitur pellentesque pharetra. Phasellus vehicula velit id sapien mattis placerat. Sed viverra purus turpis, eu facilisis odio blandit ut. Integer semper risus tincidunt elit congue, quis sodales metus laoreet. Mauris magna magna, tincidunt eu volutpat non, dictum vestibulum dui. Maecenas ut urna lacinia, hendrerit ex ac, laoreet tellus.
+        Enter Game Stack, the revolutionary and industry-breaking way to track your progress in any video game you are currently playing. 
         </p>
         <br>
         </br>
