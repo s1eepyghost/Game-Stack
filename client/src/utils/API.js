@@ -2,8 +2,8 @@
 Todo: should maybe limit how many to search for?
 Todo: Also figure out how to secretly send API keys to these functions
 */
+
 export const searchRAWG = (query) => {
-    
     return fetch(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&search=${query}`);
 }
 

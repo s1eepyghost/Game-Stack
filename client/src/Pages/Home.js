@@ -6,6 +6,7 @@ function Home() {
             <h1>Home</h1>
             <br />
             <br />
+            <h3>Show off the games that you own, and compare with others's.</h3>
         </>
     )
 }
