@@ -14,6 +14,10 @@ const resolvers = {
 
             throw new AuthenticationError('Please log in to get user data');
         },
+        user: async (parent, args) => {
+            const userData = await User.findById(args.userId);
+            return userData;
+        },
         users: async () => {
             return User.find({});
         }
