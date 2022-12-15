@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { validateEmail } from '../utilis/helper';
+import { validateEmail } from '../utils/helper';
 
 
 function Contact() {
@@ -38,7 +38,7 @@ function Contact() {
 
 return (
   <section class="justify-content-center" id="contact-section">
-      <h1 data-testid='h1tag' className="contact">Contact: </h1>
+      <h1 data-testid='h1tag' className="contact">Contact:</h1>
       <hr></hr>
       <form class="justify-content-center" id="contact-form">
           <div>
@@ -68,3 +68,4 @@ return (
 }
 
 export default Contact;
+
