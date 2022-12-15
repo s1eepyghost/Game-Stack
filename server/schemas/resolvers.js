@@ -26,7 +26,7 @@ const resolvers = {
                 throw new AuthenticationError('No user registered under that email!');
             }
 
-            const pwCheck = await User.isCorrectPassword(password);
+            const pwCheck = await user.isCorrectPassword(password);
 
             if (!pwCheck) {
                 throw new AuthenticationError('User found, but incorrect password!');
