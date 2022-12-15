@@ -1,14 +1,23 @@
-  import Button from 'react-bootstrap/Button';
-  import Container from 'react-bootstrap/Container';
-  import Form from 'react-bootstrap/Form';
-  import Nav from 'react-bootstrap/Nav';
-  import Navbar from 'react-bootstrap/Navbar';
-  import NavDropdown from 'react-bootstrap/NavDropdown';
-  import React from 'react'
-  // import Home from "./Home.js"
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Tab from 'react-bootstrap/Tab';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
 
-  function NavScrollExample() {
-    return (
+import Auth from '../utils/auth';
+
+function NavScrollExample() {
+
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <>
       <Navbar bg="light" expand="lg">
         <Container fluid>
           <Navbar.Brand>Game Stack</Navbar.Brand>
@@ -32,20 +41,53 @@
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+            {/* todo: put login/signup/logout buttons here */}
+              <Nav className="d-flex">
+                {Auth.loggedIn() ? (
+                  <>
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  </>
+                ) : (
+                  <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                )}
+              </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    );
-  }
-  export default NavScrollExample;
-  
-  
+      {/* set up signup/login modal */}
+      <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='signup-modal'        
+      >
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='signup-modal'>
+              <Nav variant='pills'>
+                <Nav.Item>
+                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <LoginForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+              <Tab.Pane eventKey='signup'>
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
+    </>
+  );
+}
+export default NavScrollExample;
+
