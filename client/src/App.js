@@ -4,6 +4,8 @@ import { setContext } from '@apollo/client/link/context';
 import Navbar from "./Pages/Navbar";
 import Home from "./Pages/Home"
 import About from "./Pages/About"
+import Contact from "./Pages/Contact"
+import Games from "./Pages/Games"
 import React, { lazy, Suspense } from "react"
 
 // const Home = lazy(() => import("./Components/Home"))
@@ -34,14 +36,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+      <Navbar />
         <Routes>
             <Route
               path="/"
-              element={<Navbar />}
+              element={<Home />}
             />
             <Route
-              path="/"
-              element={<Home />}
+              path="/games"
+              element={<Games />}
+            />
+            <Route
+              path="/contact"
+              element={<Contact />}
             />
             <Route
               path="/about"

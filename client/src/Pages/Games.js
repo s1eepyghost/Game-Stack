@@ -1,13 +1,13 @@
 import React from "react"
 
-function Contact() {
+function Games() {
     return (
         <>
-            <h1>Contact</h1>
+            <h1>Games</h1>
             <br />
             <br />
         </>
     )
 }
 
-export default Contact
+export default Games
