@@ -81,8 +81,11 @@ const Games = () => {
                         return (
                             <Card key={game.id} border='dark'>
                                 {game.background_image ? (
-                                    <Card.Img src={game.background_image} alt={`The cover for ${game.name}`} variant='top'/>
+                                    <Card.Img src={game.background_image} alt={`The cover for ${game.name}`} variant='top' style={{ objectFit: 'cover' }}/>
                                 ) : null }
+                                <Card.Body>
+                                    <Card.Title>{game.name}</Card.Title>
+                                </Card.Body>
                             </Card>
                         )
                     })}

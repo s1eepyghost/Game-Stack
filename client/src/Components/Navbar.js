@@ -1,6 +1,5 @@
-import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -30,6 +29,15 @@ function NavScrollExample() {
             >
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/games">Games</Nav.Link>
+              {Auth.loggedIn() ? (
+                <>
+                  <Nav.Link as={Link} to='/saved'>
+                    Your Stack
+                  </Nav.Link>
+                </>
+              ) : (
+                <></>
+              )}
               <NavDropdown title="More" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
                 <NavDropdown.Item href="/contact">
