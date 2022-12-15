@@ -24,6 +24,8 @@ router.route('/user/:userId').get(getSingleUser);
 
 router.route('/games/:gameId').delete(authMiddleware, deleteGame);
 
+// Todo: how to handle adding and removing platforms a user plays/owns? it's just an array of strings, but does it need to have it's own model?
+
 // //find all users
 // router.get('/', async (req, res) => {
 //     const userData = await User.findAll({
