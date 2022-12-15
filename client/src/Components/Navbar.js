@@ -1,14 +1,21 @@
-  import Button from 'react-bootstrap/Button';
-  import Container from 'react-bootstrap/Container';
-  import Form from 'react-bootstrap/Form';
-  import Nav from 'react-bootstrap/Nav';
-  import Navbar from 'react-bootstrap/Navbar';
-  import NavDropdown from 'react-bootstrap/NavDropdown';
-  import React from 'react'
-  // import Home from "./Home.js"
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import SignUpForm from './SignUpForm';
 
-  function NavScrollExample() {
-    return (
+import Auth from '../utils/auth';
+
+function NavScrollExample() {
+
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <>
       <Navbar bg="light" expand="lg">
         <Container fluid>
           <Navbar.Brand>Game Stack</Navbar.Brand>
@@ -32,20 +39,25 @@
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+            {/* todo: put login/signup/logout buttons here */}
+              <Nav className="d-flex">
+                {Auth.loggedIn() ? (
+                  <>
+                  Logged in, this isn't finished yet
+                  </>
+                ) : (
+                  <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                )}
+              </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    );
-  }
-  export default NavScrollExample;
-  
-  
+      {/* set up signup/login modal */}
+      <Modal>
+
+      </Modal>
+    </>
+  );
+}
+export default NavScrollExample;
+
