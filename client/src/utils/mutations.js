@@ -45,7 +45,7 @@ export const SAVE_GAME = gql`
 `;
 
 export const DELETE_GAME = gql`
-    mutation deleteGame($gameId: Int!) {
+    mutation deleteGame($gameId: String!) {
         deleteGame(gameId: $gameId) {
             _id
             username
