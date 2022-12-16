@@ -103,7 +103,7 @@ const Games = () => {
 
             <Container>
                 <CardColumns>
-                    {data.map((game) => {
+                    {searchedGames.map((game) => {
                         return (
                             <Card key={game.id} border='dark'>
                                 {game.background_image ? (

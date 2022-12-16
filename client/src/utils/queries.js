@@ -8,7 +8,7 @@ export const GET_SELF = gql`
             email
             gameCount
             savedGames {
-                 gameId
+                gameId
                 developers
                 description
                 title
@@ -20,10 +20,10 @@ export const GET_SELF = gql`
     }
 `;
 
-export const QUERY_MATCHUPS = gql`
-    query matchups($_id: String) {
-        matchups(_id: $_id) {
+// export const QUERY_MATCHUPS = gql`
+//     query matchups($_id: String) {
+//         matchups(_id: $_id) {
 
-        }
-    }
-`;
+//         }
+//     }
+// `;
