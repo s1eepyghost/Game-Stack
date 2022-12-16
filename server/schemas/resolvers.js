@@ -77,8 +77,9 @@ const resolvers = {
             throw new AuthenticationError('You must be logged in to remove games from your stack.');
         },
         addPlatform: async (parent, { input }, context) => {
+            console.log("addPlatform, input: ", input)
             if (context.user) {
-                const userData = await User.findOneAndUpdate(
+                const userData = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedPlatforms: input }},
                     { new: true, runValidators: true }

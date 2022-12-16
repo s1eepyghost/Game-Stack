@@ -41,6 +41,31 @@ const Platforms = () => {
         }
     }
 
+    const handlePlatformSave = async (platId) => {
+        const platToSave = searchedPlatforms.find((plat) => plat.id === platId);
+        console.log(platToSave);
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            return false;
+        }
+
+        try {
+            await addPlatform({
+                variables: {
+                    input: {
+                        platformId: platToSave.id,
+                        name: platToSave.name
+                    }
+                }
+            });
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <>
             <h1>Platforms</h1>
@@ -82,7 +107,10 @@ const Platforms = () => {
                                 <Card.Body>
                                     <Card.Title>{platform.name}</Card.Title>
                                     {Auth.loggedIn() ? (
-                                        <Button>
+                                        <Button
+                                            className='btn-block btn-info'
+                                            onClick={() => handlePlatformSave(platform.id)}
+                                        >
                                             Add a copy of this platform to your stack
                                         </Button>
                                     ) : null }

@@ -71,8 +71,8 @@ export const DELETE_GAME = gql`
 `;
 
 export const ADD_PLATFORM = gql`
-    mutation addPlatform($name: String!) {
-        addPlatform(name: $name) {
+    mutation addPlatform($input: addPlatformParams!) {
+        addPlatform(input: $input) {
             _id
             username
             email

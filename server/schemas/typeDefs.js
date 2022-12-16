@@ -18,9 +18,8 @@ const typeDefs = gql`
     }
 
     type Platform {
-        _id: ID!
+        platformId: Int!
         name: String!
-        platformId: Int
     }
 
     type Game {
