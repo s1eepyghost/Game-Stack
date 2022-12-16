@@ -3,43 +3,24 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 
 import Auth from '../utils/auth';
 import { searchRAWG } from '../utils/API';
-
+import { QUERY_MATCHUPS } from '../utils/queries';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../utils/mutations';
 
 const Games = () => {
-    // const [getGames, { loading, data }] = useLazyQuery(QUERY_MATCHUPS);
+    const [getGames, { loading, data: searchedGames }] = useLazyQuery(QUERY_MATCHUPS);
 
     const [searchInput, setSearchInput] = useState('');
-
-    const [searchedGames, setSearchedGames] = useState([]) ;
 
     const [saveGame, { error }] = useMutation(SAVE_GAME);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log("Got search input: ", searchInput);
-
+        console.log(searchInput)
         if (!searchInput) {
             return false;
         }
-        // getGames({ variables: {query: searchInput} })
-        try {
-            const response = await searchRAWG(searchInput);
-            if (!response.ok) {
-                throw new Error('something went wrong!');
-            }
-            const items = await response.json();
-            console.log(items);
-            
-            const gameData = items.results;
-            console.log(gameData);
-            setSearchedGames(gameData);
-            setSearchInput('');
-        }
-        catch (err) {
-            console.error(err);
-        }
+        getGames({ variables: {query: searchInput} })
     }
 
     const handleGameSave = async (gameId) => {
@@ -71,6 +52,7 @@ const Games = () => {
         }
     }
     // Todo: have initial API query of the top games from RAWG? May also need to add a Search form on this page.
+    console.log(searchedGames)
     return (
         <>
             <h1>Games</h1>
@@ -103,7 +85,7 @@ const Games = () => {
 
             <Container>
                 <CardColumns>
-                    {searchedGames.map((game) => {
+                    {searchedGames?.matchups?.map((game) => {
                         return (
                             <Card key={game.id} border='dark'>
                                 {game.background_image ? (

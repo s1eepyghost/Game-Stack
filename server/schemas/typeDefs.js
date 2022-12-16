@@ -5,7 +5,9 @@ const typeDefs = gql`
         self: User
         user(userId: ID!): User
         users: [User]
-        search(query: String!): [Game]
+        search(query:String!): [Game]
+        matchups(query:String!): [APIgame]
+        top50: [APIgame]
     }
 
     type User {
