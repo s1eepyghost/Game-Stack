@@ -14,7 +14,7 @@ const typeDefs = gql`
         email: String!
         gameCount: Int
         savedGames: [Game]
-        savedPlatforms: [String]
+        savedPlatforms: [Platform]
     }
 
     type Platform {
@@ -49,8 +49,8 @@ const typeDefs = gql`
         testAddUser(username: String!, email: String!, password: String!): User
         saveGame(input: saveGameParams): User
         deleteGame(gameId: Int!): User
-        addPlatform(name: String): User
-        removePlatform(name: String): User
+        addPlatform(input: addPlatformParams): User
+        removePlatform(platformId: Int!): User
     }
 
     input saveGameParams {
@@ -60,6 +60,11 @@ const typeDefs = gql`
         image: String
         developers: [String]
         platforms: [String]
+    }
+
+    input addPlatformParams {
+        platformId: Int
+        name: String
     }
 `;
 

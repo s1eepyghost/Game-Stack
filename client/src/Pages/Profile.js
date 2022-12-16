@@ -8,7 +8,9 @@ import { REMOVE_PLATFORM } from '../utils/mutations';
 
 function Profile() {
     const { loading, data } = useQuery(GET_SELF);
+    console.log(data);
     const userData = data?.self || {};
+    console.log(userData);
 
     const [deleteGame, { error }] = useMutation(DELETE_GAME);
     const [removePlatform, { error2 }] = useMutation(REMOVE_PLATFORM);
@@ -41,6 +43,7 @@ function Profile() {
     return (
         <>
             <h1>Your Game Stack</h1>
+            <br />
             <br />
             <Container>
                 <CardColumns>

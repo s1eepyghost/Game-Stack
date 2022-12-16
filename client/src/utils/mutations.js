@@ -39,7 +39,10 @@ export const SAVE_GAME = gql`
                 image
                 platforms
             }
-            savedPlatforms
+            savedPlatforms {
+                platformId
+                name
+            }
         }
     }
 `;
@@ -59,7 +62,10 @@ export const DELETE_GAME = gql`
                 image
                 platforms
             }
-            savedPlatforms 
+            savedPlatforms {
+                platformId
+                name
+            }
         }
     }
 `;
@@ -79,7 +85,10 @@ export const ADD_PLATFORM = gql`
                 image
                 platforms
             }
-            savedPlatforms             
+            savedPlatforms {
+                platformId
+                name
+            }          
         }
     }
 `;
@@ -99,7 +108,10 @@ export const REMOVE_PLATFORM = gql`
                 image
                 platforms
             }
-            savedPlatforms             
+            savedPlatforms {
+                platformId
+                name
+            }            
         }
     }
 `;
