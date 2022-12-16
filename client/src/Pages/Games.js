@@ -6,21 +6,40 @@ import { searchRAWG } from '../utils/API';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../utils/mutations';
-//REVERT
+
 const Games = () => {
-    const [getGames, { loading, data }] = useLazyQuery(QUERY_MATCHUPS);
+    // const [getGames, { loading, data }] = useLazyQuery(QUERY_MATCHUPS);
 
     const [searchInput, setSearchInput] = useState('');
+
+    const [searchedGames, setSearchedGames] = useState([]) ;
 
     const [saveGame, { error }] = useMutation(SAVE_GAME);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log("Got search input: ", searchInput);
 
         if (!searchInput) {
             return false;
         }
-        getGames({ variables: {query: searchInput} })
+        // getGames({ variables: {query: searchInput} })
+        try {
+            const response = await searchRAWG(searchInput);
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            const items = await response.json();
+            console.log(items);
+            
+            const gameData = items.results;
+            console.log(gameData);
+            setSearchedGames(gameData);
+            setSearchInput('');
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
 
     const handleGameSave = async (gameId) => {
@@ -92,14 +111,9 @@ const Games = () => {
                                 ) : null }
                                 <Card.Body>
                                     <Card.Title>{game.name}</Card.Title>
-                                    {Auth.loggedIn() ? (
-                                        <Button
-                                            className='btn-block btn-info'
-                                            onClick={() => handleGameSave(game.id)}
-                                        >
-                                            Add a copy of this game to your stack
-                                        </Button>
-                                    ) : null }
+                                    <Button>
+                                        Add this game, eventually
+                                    </Button>
                                 </Card.Body>
                             </Card>
                         )
