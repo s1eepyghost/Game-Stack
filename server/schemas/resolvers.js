@@ -56,7 +56,6 @@ const resolvers = {
             return { token, user };
         },
         saveGame: async (parent, {input}, context) => {
-            console.log('saveGame run');
             if (context.user) {
                 const userData = await User.findOneAndUpdate(
                     { _id: context.user._id},
@@ -70,9 +69,8 @@ const resolvers = {
             throw new AuthenticationError('You must be logged in to save games to your stack.');
         },
         deleteGame: async (parent, { gameId }, context) => {
-            console.log('deleteGame run');
             if (context.user) {
-                const userData = await User.findByIdAndUpdate(
+                const userData = await User.findByIdAndDelete(
                     { _id: context.user._id },
                     { $pull: { savedGames: { gameId: gameId }}},
                     { new: true }
@@ -112,16 +110,6 @@ const resolvers = {
         testAddUser: async (parent, args, context) => {
             console.log('testAddUser ran')
             return await User.create(args);
-        },
-        testRemoveGame: async (parent, args, context) => {
-            console.log('testRemoveGame ran');
-            const userData = await User.findByIdAndUpdate(
-                { _id: args.userId },
-                { $pull: { savedGames: { gameId: args.gameId }}},
-                { new: true }
-            );
-
-            return userData;
         }
         
     }

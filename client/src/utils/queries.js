@@ -8,7 +8,7 @@ export const GET_SELF = gql`
             email
             gameCount
             savedGames {
-                 gameId
+                gameId
                 developers
                 description
                 title
