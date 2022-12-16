@@ -6,7 +6,7 @@ import { searchRAWG } from '../utils/API';
 
 import { useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../utils/mutations';
-
+//REVERT
 const Games = () => {
     const [searchedGames, setSearchedGames] = useState([]);
 
