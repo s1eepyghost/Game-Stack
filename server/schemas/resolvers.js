@@ -65,7 +65,7 @@ const resolvers = {
         },
         deleteGame: async (parent, { gameId }, context) => {
             if (context.user) {
-                const userData = await User.findByIdAndDelete(
+                const userData = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedGames: { gameId: gameId }}},
                     { new: true }
