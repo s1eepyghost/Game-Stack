@@ -7,6 +7,7 @@ import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Games from "./Pages/Games"
 import Profile from "./Pages/Profile";
+import Platforms from "./Pages/Platforms";
 import React, { lazy, Suspense } from "react"
 
 // const Home = lazy(() => import("./Components/Home"))
@@ -55,9 +56,14 @@ function App() {
               element={<About />}
             />
             <Route
-              path="/profile"
+              path="/saved"
               element={<Profile />}
             />
+            <Route
+              path="/platforms"
+              element={<Platforms />}
+            />
+            {/* todo: view other profiles */}
             <Route
               path="*"
               element={<h1 className="display-2">Wrong page!</h1>}
