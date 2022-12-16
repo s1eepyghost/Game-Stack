@@ -1,6 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+const fetch = require('node-fetch');
+require('dotenv').config()
 
 const resolvers = {
     Query: {
@@ -16,6 +18,10 @@ const resolvers = {
         },
         users: async () => {
             return User.find({});
+        },
+        search: async (parent, args, context) => {
+            const data = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&search=${args.query}`)).json()
+            return (data.results)
         }
     },
     Mutation: {

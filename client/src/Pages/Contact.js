@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { validateEmail } from '../utils/helper';
 
 
@@ -37,6 +38,7 @@ function Contact() {
   }
 
 return (
+    <Container>
   <section class="justify-content-center" id="contact-section">
       <h1 data-testid='h1tag' className="contact">Contact:</h1>
       <hr></hr>
@@ -64,6 +66,7 @@ return (
           </div>
       </form>
   </section>
+  </Container>
   );
 }
 

@@ -4,6 +4,7 @@ const typeDefs = gql`
     type Query {
         self: User
         users: [User]
+        search(query:String!): [Game]
     }
 
     type User {
@@ -22,6 +23,12 @@ const typeDefs = gql`
         title: String
         image: String
         platforms: [String]
+    }
+
+    type APIgame {
+        name: String
+        released: String
+        background_image: String
     }
 
     type Auth {
