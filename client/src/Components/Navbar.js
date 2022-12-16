@@ -39,16 +39,8 @@ function NavScrollExample() {
               ) : (
                 <></>
               )}
-              <NavDropdown title="More" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="/about">About</NavDropdown.Item>
-                <NavDropdown.Item href="/contact">
-                  Contact
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Login/Signup
-                </NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/contact">Contact</Nav.Link>
             </Nav>
             {/* todo: put login/signup/logout buttons here */}
               <Nav className="d-flex">
