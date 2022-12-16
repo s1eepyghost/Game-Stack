@@ -3,12 +3,12 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 
 import Auth from '../utils/auth';
 import { searchRAWG } from '../utils/API';
-
+import { QUERY_MATCHUPS } from '../utils/queries';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../utils/mutations';
 
 const Games = () => {
-    const [getGames, { loading, data }] = useLazyQuery(QUERY_MATCHUPS);
+    const [getGames, { loading, data: searchedGames }] = useLazyQuery(QUERY_MATCHUPS);
 
     const [searchInput, setSearchInput] = useState('');
 
@@ -16,7 +16,7 @@ const Games = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+        console.log(searchInput)
         if (!searchInput) {
             return false;
         }
@@ -52,6 +52,7 @@ const Games = () => {
         }
     }
     // Todo: have initial API query of the top games from RAWG? May also need to add a Search form on this page.
+    console.log(searchedGames)
     return (
         <>
             <h1>Games</h1>
@@ -84,7 +85,7 @@ const Games = () => {
 
             <Container>
                 <CardColumns>
-                    {data.map((game) => {
+                    {searchedGames?.matchups?.map((game) => {
                         return (
                             <Card key={game.id} border='dark'>
                                 {game.background_image ? (
