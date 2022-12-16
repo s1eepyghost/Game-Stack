@@ -16,7 +16,6 @@ const Games = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log("Got search input: ", searchInput);
 
         if (!searchInput) {
             return false;
@@ -40,6 +39,35 @@ const Games = () => {
             setSearchInput('');
         }
         catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleGameSave = async (gameId) => {
+        const gameToSave = searchedGames.find((game) => game.id === gameId);
+        console.log('gameToSave: ', gameToSave);
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+          return false;
+        }
+
+        try {
+            await saveGame({
+                variables: {
+                    input: {
+                        description: 'placeholder',
+                        title: gameToSave.name,
+                        gameId: gameToSave.id,
+                        image: gameToSave.background_image,
+                        developers: [''],
+                        platforms: ['']
+                    }
+                }
+            });
+        }
+        catch(err) {
             console.error(err);
         }
     }
@@ -85,9 +113,14 @@ const Games = () => {
                                 ) : null }
                                 <Card.Body>
                                     <Card.Title>{game.name}</Card.Title>
-                                    <Button>
-                                        Add this game, eventually
-                                    </Button>
+                                    {Auth.loggedIn() ? (
+                                        <Button
+                                            className='btn-block btn-info'
+                                            onClick={() => handleGameSave(game.id)}
+                                        >
+                                            Add a copy of this game to your stack
+                                        </Button>
+                                    ) : null }
                                 </Card.Body>
                             </Card>
                         )

@@ -17,7 +17,7 @@ const typeDefs = gql`
     }
 
     type Game {
-        gameId: ID
+        gameId: Int!
         developers: [String]
         description: String
         title: String
@@ -35,15 +35,16 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         testAddUser(username: String!, email: String!, password: String!): User
         saveGame(input: saveGameParams): User
-        deleteGame(gameId: String!): User
+        deleteGame(gameId: Int!): User
         addPlatform(name: String): User
         removePlatform(name: String): User
+        testRemoveGame(userId: ID!, gameId: Int!): User
     }
 
     input saveGameParams {
         description: String
         title: String
-        gameId: String
+        gameId: Int
         image: String
         developers: [String]
         platforms: [String]
