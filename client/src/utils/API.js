@@ -11,5 +11,5 @@ export const searchRAWG = (query) => {
     Sends a search query to RAWG to get any game platforms it recognizes.
 */
 export const searchRAWGPlatforms = (query) => {
-
+    return fetch(`https://api.rawg.io/api/platforms?key=${process.env.REACT_APP_API_KEY}&search=${query}`);
 }

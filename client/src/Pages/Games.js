@@ -93,9 +93,14 @@ const Games = () => {
                                 ) : null }
                                 <Card.Body>
                                     <Card.Title>{game.name}</Card.Title>
-                                    <Button>
-                                        Add this game, eventually
-                                    </Button>
+                                    {Auth.loggedIn() ? (
+                                        <Button
+                                            className='btn-block btn-info'
+                                            onClick={() => handleGameSave(game.id)}
+                                        >
+                                            Add a copy of this game to your stack
+                                        </Button>
+                                    ) : null }
                                 </Card.Body>
                             </Card>
                         )

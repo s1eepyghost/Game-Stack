@@ -15,7 +15,10 @@ export const GET_SELF = gql`
                 image
                 platforms
             }
-            savedPlatforms
+            savedPlatforms {
+                platformId
+                name
+            }   
         }
     }
 `;

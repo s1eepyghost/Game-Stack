@@ -39,13 +39,16 @@ export const SAVE_GAME = gql`
                 image
                 platforms
             }
-            savedPlatforms
+            savedPlatforms {
+                platformId
+                name
+            }
         }
     }
 `;
 
 export const DELETE_GAME = gql`
-    mutation deleteGame($gameId: String!) {
+    mutation deleteGame($gameId: Int!) {
         deleteGame(gameId: $gameId) {
             _id
             username
@@ -59,14 +62,17 @@ export const DELETE_GAME = gql`
                 image
                 platforms
             }
-            savedPlatforms 
+            savedPlatforms {
+                platformId
+                name
+            }
         }
     }
 `;
 
 export const ADD_PLATFORM = gql`
-    mutation addPlatform($name: String!) {
-        addPlatform(name: $name) {
+    mutation addPlatform($input: addPlatformParams!) {
+        addPlatform(input: $input) {
             _id
             username
             email
@@ -79,7 +85,10 @@ export const ADD_PLATFORM = gql`
                 image
                 platforms
             }
-            savedPlatforms             
+            savedPlatforms {
+                platformId
+                name
+            }          
         }
     }
 `;
@@ -99,7 +108,10 @@ export const REMOVE_PLATFORM = gql`
                 image
                 platforms
             }
-            savedPlatforms             
+            savedPlatforms {
+                platformId
+                name
+            }            
         }
     }
 `;

@@ -29,6 +29,7 @@ function NavScrollExample() {
             >
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/games">Games</Nav.Link>
+              <Nav.Link href="/platforms">Platforms</Nav.Link>
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
