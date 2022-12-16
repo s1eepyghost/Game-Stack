@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { searchRAWG } from '../utils/API';
+import { searchRAWGPlatforms } from '../utils/API';
 
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { SAVE_GAME } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { ADD_PLATFORM } from '../utils/mutations';
 
-const Games = () => {
-    const [getGames, { loading, data }] = useLazyQuery(QUERY_MATCHUPS);
-
+const Platforms = () => {
+    const [searchedPlatforms, setSearchedPlatforms] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-
-    const [saveGame, { error }] = useMutation(SAVE_GAME);
+    const [addPlatform, { error }] = useMutation(ADD_PLATFORM);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -20,41 +18,32 @@ const Games = () => {
         if (!searchInput) {
             return false;
         }
-        getGames({ variables: {query: searchInput} })
-    }
-
-    const handleGameSave = async (gameId) => {
-        const gameToSave = searchedGames.find((game) => game.id === gameId);
-        console.log('gameToSave: ', gameToSave);
-
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-          return false;
-        }
 
         try {
-            await saveGame({
-                variables: {
-                    input: {
-                        description: 'placeholder',
-                        title: gameToSave.name,
-                        gameId: gameToSave.id,
-                        image: gameToSave.background_image,
-                        developers: [''],
-                        platforms: ['']
-                    }
-                }
-            });
+            const response = await searchRAWGPlatforms(searchInput);
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+
+            const items = await response.json();
+
+            console.log(items);
+            
+            const platData = items.results;
+            console.log(platData);
+
+            setSearchedPlatforms(platData);
+            setSearchInput('');
         }
-        catch(err) {
+        catch (err) {
             console.error(err);
         }
     }
-    // Todo: have initial API query of the top games from RAWG? May also need to add a Search form on this page.
+
     return (
         <>
-            <h1>Games</h1>
+            <h1>Platforms</h1>
             <br />
             <br />
             <Jumbotron fluid className='text-light bg-dark'>
@@ -69,7 +58,7 @@ const Games = () => {
                                     onChange={(e) => setSearchInput(e.target.value)}
                                     type='text'
                                     size='lg'
-                                    placeholder='Search for a game'
+                                    placeholder='Search for a platform'
                                 />
                             </Col>
                             <Col xs={12} md={4}>
@@ -84,20 +73,17 @@ const Games = () => {
 
             <Container>
                 <CardColumns>
-                    {data.map((game) => {
+                    {searchedPlatforms.map((platform) => {
                         return (
-                            <Card key={game.id} border='dark'>
-                                {game.background_image ? (
-                                    <Card.Img src={game.background_image} alt={`The cover for ${game.name}`} variant='top' style={{ objectFit: 'cover' }}/>
+                            <Card key={platform.id} border='dark'>
+                                {platform.background_image ? (
+                                    <Card.Img src={platform.background_image} alt={`An image of a ${platform.name}`} variant='top' style={{ objectFit: 'cover' }}/>
                                 ) : null }
                                 <Card.Body>
-                                    <Card.Title>{game.name}</Card.Title>
+                                    <Card.Title>{platform.name}</Card.Title>
                                     {Auth.loggedIn() ? (
-                                        <Button
-                                            className='btn-block btn-info'
-                                            onClick={() => handleGameSave(game.id)}
-                                        >
-                                            Add a copy of this game to your stack
+                                        <Button>
+                                            Add a copy of this platform to your stack
                                         </Button>
                                     ) : null }
                                 </Card.Body>
@@ -111,4 +97,4 @@ const Games = () => {
     )
 }
 
-export default Games
+export default Platforms
