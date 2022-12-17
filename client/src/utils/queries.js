@@ -23,15 +23,28 @@ export const GET_SELF = gql`
     }
 `;
 
-export const QUERY_MATCHUPS = gql`
-    query matchups($query: String!) {
-        matchups(query: $query) {
-            name
-            released
-            background_image
+export const GET_USER = gql`
+    query user($userId: ID!) {
+        user(userId: $userId) {
+            _id
+            username
+            email
+            gameCount
+            savedGames {
+                gameId
+                developers
+                description
+                title
+                image
+                platforms
+            }
+            savedPlatforms {
+                platformId
+                name
+            }              
         }
     }
-`;
+`
 
 export const QUERY_TOP50 = gql`
     query top50 {

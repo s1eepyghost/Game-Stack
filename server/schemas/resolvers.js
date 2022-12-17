@@ -31,7 +31,6 @@ const resolvers = {
             const data = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&`)).json()
             return (data.results)
         }
-
     },
     Mutation: {
         login: async (parent, {email, password}) => {
@@ -95,11 +94,11 @@ const resolvers = {
 
             throw new AuthenticationError('You must be logged in to save game platforms to your account.');
         },
-        removePlatform: async (parent, { platform }, context) => {
+        removePlatform: async (parent, { platformId }, context) => {
             if (context.user) {
                 const userData = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedPlatforms: platform }},
+                    { $pull: { savedPlatforms: {platformId: platformId} }},
                     { new: true }
                 );
 
