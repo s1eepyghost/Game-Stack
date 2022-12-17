@@ -1,3 +1,5 @@
+// Ideally, this should never be a thing, but queries in conditionals is something that's not good. So we're stuck with this. -JL
+
 import React from 'react';
 import { Container, CardColumns, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
@@ -21,6 +23,7 @@ function OtherProfile() {
         <>
             <h1>{userData.username}'s Game Stack</h1>
             <br />
+            <h2>Platforms</h2>
             <Container>
                 <CardColumns>
                     {userData.savedPlatforms.map((plat) => {
@@ -35,6 +38,7 @@ function OtherProfile() {
                 </CardColumns>
             </Container>
             <br />
+            <h2>Games</h2>
             <Container>
                 <CardColumns>
                     {userData.savedGames.map((game) => {

@@ -15,7 +15,6 @@ function Profile() {
     const userData = data?.self || {};
 
     const handleDeleteGame = async (gameId) => {
-        console.log("gameId to remove: ", gameId)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -55,6 +54,16 @@ function Profile() {
             <h1>Your Game Stack</h1>
             <br />
             <Container>
+                <Button
+                    className='btn-block btn-info'
+                    onClick={() => navigator.clipboard.writeText(window.location.origin + '/profile/' + userData._id)}
+                >
+                    Copy URL to this stack
+                </Button>
+            </Container>
+            <br />
+            <h2>Platforms</h2>
+            <Container>
                 <CardColumns>
                     {userData.savedPlatforms.map((plat) => {
                         return (
@@ -71,6 +80,7 @@ function Profile() {
                 </CardColumns>
             </Container>
             <br />
+            <h2>Games</h2>
             <Container>
                 <CardColumns>
                     {userData.savedGames.map((game) => {

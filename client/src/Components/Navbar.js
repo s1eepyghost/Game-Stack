@@ -16,7 +16,7 @@ function NavScrollExample() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand>Game Stack</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
