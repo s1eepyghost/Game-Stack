@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Modal from 'react-bootstrap/Modal';
 import React, { useState } from 'react';
 import SignUpForm from './SignUpForm';
@@ -32,7 +31,7 @@ function NavScrollExample() {
               <Nav.Link href="/platforms">Platforms</Nav.Link>
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
+                  <Nav.Link as={Link} to='/profile'>
                     Your Stack
                   </Nav.Link>
                 </>

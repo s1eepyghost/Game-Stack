@@ -8,6 +8,7 @@ import Contact from "./Pages/Contact"
 import Games from "./Pages/Games"
 import Profile from "./Pages/Profile";
 import Platforms from "./Pages/Platforms";
+import OtherProfile from './Pages/OtherProfile';
 import React, { lazy, Suspense } from "react"
 
 // const Home = lazy(() => import("./Components/Home"))
@@ -56,8 +57,12 @@ function App() {
               element={<About />}
             />
             <Route
-              path="/saved"
+              path="/profile"
               element={<Profile />}
+            />
+            <Route
+              path="/profile/:userId"
+              element={<OtherProfile />}
             />
             <Route
               path="/platforms"

@@ -23,6 +23,29 @@ export const GET_SELF = gql`
     }
 `;
 
+export const GET_USER = gql`
+    query user($userId: ID!) {
+        user(userId: $userId) {
+            _id
+            username
+            email
+            gameCount
+            savedGames {
+                gameId
+                developers
+                description
+                title
+                image
+                platforms
+            }
+            savedPlatforms {
+                platformId
+                name
+            }              
+        }
+    }
+`
+
 // export const QUERY_MATCHUPS = gql`
 //     query matchups($_id: String) {
 //         matchups(_id: $_id) {

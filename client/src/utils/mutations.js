@@ -94,8 +94,8 @@ export const ADD_PLATFORM = gql`
 `;
 
 export const REMOVE_PLATFORM = gql`
-    mutation removePlatform($name: String!) {
-        removePlatform(name: $name) {
+    mutation removePlatform($platformId: Int!) {
+        removePlatform(platformId: $platformId) {
             _id
             username
             email

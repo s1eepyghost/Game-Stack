@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Container, CardColumns, Card, Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_SELF } from '../utils/queries';
@@ -8,12 +8,11 @@ import { REMOVE_PLATFORM } from '../utils/mutations';
 
 function Profile() {
     const { loading, data } = useQuery(GET_SELF);
-    console.log(data);
-    const userData = data?.self || {};
-    console.log(userData);
 
     const [deleteGame, { error }] = useMutation(DELETE_GAME);
     const [removePlatform, { error2 }] = useMutation(REMOVE_PLATFORM);
+
+    const userData = data?.self || {};
 
     const handleDeleteGame = async (gameId) => {
         console.log("gameId to remove: ", gameId)
@@ -33,9 +32,20 @@ function Profile() {
         }
     };
 
-    // const handleRemovePlatofrm = async (platformId) => {
+    const handleRemovePlatform = async (platformId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // }
+        if (!token) {
+            return false;
+        }
+
+        try {
+            await removePlatform({ variables: {platformId: platformId}});
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
     if (loading) {
         return <h2>Grabbing data...</h2>;
@@ -44,6 +54,22 @@ function Profile() {
         <>
             <h1>Your Game Stack</h1>
             <br />
+            <Container>
+                <CardColumns>
+                    {userData.savedPlatforms.map((plat) => {
+                        return (
+                            <Card key={plat.platformId} border='dark'>
+                                <Card.Body>
+                                    <Card.Title>{plat.name}</Card.Title>
+                                    <Button className='btn-block btn-danger' onClick={() => handleRemovePlatform(plat.platformId)}>
+                                        Remove this platform
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })}
+                </CardColumns>
+            </Container>
             <br />
             <Container>
                 <CardColumns>
