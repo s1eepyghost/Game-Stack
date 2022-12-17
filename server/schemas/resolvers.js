@@ -23,10 +23,14 @@ const resolvers = {
         users: async () => {
             return User.find({});
         },
-        search: async (parent, args, context) => {
+        matchups: async (parent, args, context) => {
             const data = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&search=${args.query}`)).json()
             return (data.results)
         },
+        top50: async (parent, args, context) => {
+            const data = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&`)).json()
+            return (data.results)
+        }
     },
     Mutation: {
         login: async (parent, {email, password}) => {

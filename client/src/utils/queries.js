@@ -46,10 +46,12 @@ export const GET_USER = gql`
     }
 `
 
-// export const QUERY_MATCHUPS = gql`
-//     query matchups($_id: String) {
-//         matchups(_id: $_id) {
-
-//         }
-//     }
-// `;
+export const QUERY_TOP50 = gql`
+    query top50 {
+        top50 {
+            name
+            released
+            background_image
+        }
+    }
+`;
