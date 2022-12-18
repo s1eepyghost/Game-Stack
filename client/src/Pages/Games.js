@@ -3,24 +3,45 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 
 import Auth from '../utils/auth';
 import { searchRAWG } from '../utils/API';
-import { QUERY_MATCHUPS } from '../utils/queries';
+import { QUERY_TOP50 } from '../utils/queries';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../utils/mutations';
 
 const Games = () => {
-    const [getGames, { loading, data: searchedGames }] = useLazyQuery(QUERY_MATCHUPS);
+    // As much as this is a good idea to have the game search page have an initial value,
+    // I keep running into a too many re-renders error. As such the MVP will continue
+    // using the direct API call, since that works at the very least. -JL
+    // const [getTop50Games, { loading, data }] = useLazyQuery(QUERY_TOP50);
 
     const [searchInput, setSearchInput] = useState('');
+    const [searchedGames, setSearchedGames] = useState([]);
 
     const [saveGame, { error }] = useMutation(SAVE_GAME);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(searchInput)
+        
         if (!searchInput) {
             return false;
         }
-        getGames({ variables: {query: searchInput} })
+        
+        try {
+            const response = await searchRAWG(searchInput);
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+            const items = await response.json();
+            
+            
+            const gameData = items.results;
+            console.log(gameData);
+            
+            setSearchedGames(gameData);
+            setSearchInput('');
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
 
     const handleGameSave = async (gameId) => {
@@ -52,7 +73,7 @@ const Games = () => {
         }
     }
     // Todo: have initial API query of the top games from RAWG? May also need to add a Search form on this page.
-    console.log(searchedGames)
+    console.log(searchedGames);
     return (
         <>
             <h1>Games</h1>
@@ -85,7 +106,7 @@ const Games = () => {
 
             <Container>
                 <CardColumns>
-                    {searchedGames?.matchups?.map((game) => {
+                    {searchedGames.map((game) => {
                         return (
                             <Card key={game.id} border='dark'>
                                 {game.background_image ? (
