@@ -25,7 +25,7 @@ const typeDefs = gql`
     }
 
     type Game {
-        gameId: Int
+        gameId: Int!
         developers: [String]
         description: String
         title: String
@@ -34,6 +34,7 @@ const typeDefs = gql`
     }
 
     type APIgame {
+        id: Int!
         name: String
         released: String
         background_image: String

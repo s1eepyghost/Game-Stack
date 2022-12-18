@@ -49,6 +49,7 @@ export const GET_USER = gql`
 export const QUERY_TOP50 = gql`
     query top50 {
         top50 {
+            id
             name
             released
             background_image

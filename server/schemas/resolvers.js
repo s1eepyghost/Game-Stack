@@ -28,8 +28,8 @@ const resolvers = {
             return (data.results)
         },
         top50: async (parent, args, context) => {
-            const data = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&`)).json()
-            return (data.results)
+            const data = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&`)).json()
+            return (data.results);
         }
     },
     Mutation: {
