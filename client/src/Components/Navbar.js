@@ -26,9 +26,9 @@ function NavScrollExample() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/games">Games</Nav.Link>
-              <Nav.Link href="/platforms">Platforms</Nav.Link>
+              <Nav.Link as={Link} to='/'>Home</Nav.Link>
+              <Nav.Link as={Link} to='/games'>Games</Nav.Link>
+              <Nav.Link as={Link} to="/platforms">Platforms</Nav.Link>
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/profile'>
@@ -38,8 +38,8 @@ function NavScrollExample() {
               ) : (
                 <></>
               )}
-              <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link href="/contact">Contact</Nav.Link>
+              <Nav.Link as={Link} to="/about">About</Nav.Link>
+              <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
             </Nav>
             {/* todo: put login/signup/logout buttons here */}
               <Nav className="d-flex">
