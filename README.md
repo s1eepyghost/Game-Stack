@@ -22,8 +22,6 @@ In order to use this application you must be logged in. There are some functiona
 
 
 ## Contributing
-https://github.com/s1eepyghost
-
-https://github.com/justinwl1998
-
-https://github.com/Akhi2time
+* https://github.com/s1eepyghost
+* https://github.com/justinwl1998
+* https://github.com/Akhi2time
