@@ -5,3 +5,6 @@ The goal of the project would be to create a system for saving and accessing gam
 
 Technology
  React, Bootstrap, GraphQL, Node.js, Express.js, GraphQL, MongoDB, JWT, and Material UI
+
+ Deployed Application
+ https://cryptic-shore-95621.herokuapp.com/
