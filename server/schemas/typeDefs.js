@@ -3,7 +3,11 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Query {
         self: User
+        user(userId: ID!): User
         users: [User]
+        search(query:String!): [Game]
+        matchups(query:String!): [APIgame]
+        top50: [APIgame]
     }
 
     type User {
@@ -12,16 +16,28 @@ const typeDefs = gql`
         email: String!
         gameCount: Int
         savedGames: [Game]
-        savedPlatforms: [String]
+        savedPlatforms: [Platform]
+    }
+
+    type Platform {
+        platformId: Int!
+        name: String!
     }
 
     type Game {
-        gameId: ID
+        gameId: Int!
         developers: [String]
         description: String
         title: String
         image: String
         platforms: [String]
+    }
+
+    type APIgame {
+        id: Int!
+        name: String
+        released: String
+        background_image: String
     }
 
     type Auth {
@@ -34,18 +50,23 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         testAddUser(username: String!, email: String!, password: String!): User
         saveGame(input: saveGameParams): User
-        deleteGame(gameId: String!): User
-        addPlatform(name: String): User
-        removePlatform(name: String): User
+        deleteGame(gameId: Int!): User
+        addPlatform(input: addPlatformParams): User
+        removePlatform(platformId: Int!): User
     }
 
     input saveGameParams {
         description: String
         title: String
-        gameId: String
+        gameId: Int
         image: String
         developers: [String]
         platforms: [String]
+    }
+
+    input addPlatformParams {
+        platformId: Int
+        name: String
     }
 `;
 

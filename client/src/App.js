@@ -6,6 +6,9 @@ import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Games from "./Pages/Games"
+import Profile from "./Pages/Profile";
+import Platforms from "./Pages/Platforms";
+import OtherProfile from './Pages/OtherProfile';
 import React, { lazy, Suspense } from "react"
 
 // const Home = lazy(() => import("./Components/Home"))
@@ -32,7 +35,6 @@ const client = new ApolloClient({
 
 
 function App() {
-  const API_KEY = process.env.REACT_APP_API_KEY
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -53,6 +55,18 @@ function App() {
             <Route
               path="/about"
               element={<About />}
+            />
+            <Route
+              path="/profile"
+              element={<Profile />}
+            />
+            <Route
+              path="/profile/:userId"
+              element={<OtherProfile />}
+            />
+            <Route
+              path="/platforms"
+              element={<Platforms />}
             />
             <Route
               path="*"
