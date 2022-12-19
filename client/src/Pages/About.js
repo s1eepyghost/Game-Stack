@@ -15,12 +15,7 @@ function About() {
         <br>
         </br>
         <p>
-        Enter Game Stack, the revolutionary and industry-breaking way to track your progress in any video game you are currently playing. 
-        </p>
-        <br>
-        </br>
-        <p>
-        Morbi vitae pellentesque velit, eu elementum lacus. Morbi semper placerat semper. Maecenas dignissim nibh nec dignissim faucibus. Duis tincidunt hendrerit arcu nec sagittis. Sed quam mi, viverra ut fermentum sed, posuere eget enim. Nam non dui venenatis, tristique nisi id, sagittis enim. Ut vitae velit ex. Integer nisi felis, pharetra vel risus eget, lobortis egestas nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer bibendum, elit sit amet faucibus tristique, nisi est pellentesque nunc, sit amet tempor erat dui sed lectus. Praesent egestas sit amet lacus sed pulvinar.
+        Enter Game Stack, the revolutionary and industry-breaking way that allows users to store and manage their progress in various video games. The website provides a secure and convenient way for players to save their game data and pick up where they left off on any device. Users can sign up for an account on the website and link their gaming accounts to it. They can then use the website to save their progress in different games, view their achievements, and track their progress over time. The website may also offer other features, such as the ability to share saved games with friends, compete with others on leaderboards, and access special in-game rewards. Overall, Game Stack provides a useful tool for gamers to keep track of their progress and enjoy their favorite games without worrying about losing their hard-earned progress.
         </p>
       </div>  
     </div>
