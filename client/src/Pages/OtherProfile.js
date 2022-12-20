@@ -3,11 +3,14 @@
 import React from 'react';
 import { Container, CardColumns, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 import { GET_USER } from '../utils/queries';
 
 function OtherProfile() {
+    const { userId } = useParams();
+
     const { loading, data } = useQuery(GET_USER, {
-        variables: { userId: window.location.href.toString().trim().split('/')[4]}
+        variables: { userId: userId }
     });
     
     // const { loading2, userId } = useQuery(GET_OWN_ID);
